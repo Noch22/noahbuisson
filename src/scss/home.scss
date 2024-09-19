@@ -1,739 +1,765 @@
-
-
 .top_header {
-    height: 100%;
-    width: 100%;
-    &.gallery {
-        img {
-            width: 100%;
-            height: 120%;
-            object-fit: cover;
-            clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
-            position: absolute;
-            top: 0;
-            z-index: 0;
-        }
+  height: 100%;
+  width: 100%;
+  &.gallery {
+    img {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+      position: absolute;
+      top: 0;
+      z-index: 0;
     }
+  }
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
-html, body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #141414;
-    font-family: "Neue Montreal";
-    overflow-x: hidden;
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #141414;
+  font-family: "Neue Montreal";
 }
 
 .cursor-follower {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #999999; /* Contour gris */
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.2s ease-out, background 0.2s ease-out;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #999999; /* Contour gris */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out, background 0.2s ease-out;
+}
+
+.cursor-follower-inner {
+  width: 8px;
+  height: 8px;
+  background-color: #ffffff; /* Point blanc au milieu */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-size: 5px;
+  background-position: center;
+  transition: all 0.5s ease-in-out;
+
+  &.rotate {
+    animation: rotate 2s infinite linear;
   }
 
-  .cursor-follower-inner {
-    width: 8px;
-    height: 8px;
-    background-color: #ffffff; /* Point blanc au milieu */
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-repeat: no-repeat;
-    background-size: 5px;
-    background-position: center;
-    transition: all 0.5s ease-in-out;
-
-
-    &.rotate {
-        animation: rotate 2s infinite linear;
-    }
-
-    &.scaling {
-        background-size: 10px;
-    }
+  &.scaling {
+    background-size: 10px;
   }
+}
 
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
   }
-
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 
 .nav-item {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .nav-item a {
-    position: relative;
-    top: 20px;
-    text-decoration: none;
-    color: #fff;
-    opacity: 0.35;
+  position: relative;
+  top: 20px;
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.35;
 }
 
 .nav-item a#active {
-    opacity: 1;
+  opacity: 1;
 }
 
 .hero {
-    position: absolute;
-    width: 95%;
-    top: 50%;
-    left: 50%;
-    transform: trannslate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    color: #fff;
+  position: absolute;
+  width: 95%;
+  top: 50%;
+  left: 50%;
+  transform: trannslate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  color: #fff;
 }
 
-.icon, .icon-2 {
-    flex: 0.5;
-    padding: 0 5em;
-    font-size: 30px;
-    opacity: 0.5;
+.icon,
+.icon-2 {
+  flex: 0.5;
+  padding: 0 5em;
+  font-size: 30px;
+  opacity: 0.5;
 }
 
 .icon-2 {
-    text-align: right;
+  text-align: right;
 }
 
-.icon ion-icon, .icon-2 ion-icon {
-    transform: scale(0);
+.icon ion-icon,
+.icon-2 ion-icon {
+  transform: scale(0);
 }
 
 .title {
-    flex: 2;
-    text-align: center;
-    font-size: 40px;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  flex: 2;
+  text-align: center;
+  font-size: 40px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .title p {
-    position: relative;
-    top: 50px;
+  position: relative;
+  top: 50px;
 }
 
 .container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    gap: 1em;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 1em;
 }
 
 .container .col {
-    position: relative;
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+  position: relative;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .col .item {
-    position: relative;
-    flex: 1;
-    width: 100%;
-    background: grey;
-    overflow: hidden;
+  position: relative;
+  flex: 1;
+  width: 100%;
+  background: grey;
+  overflow: hidden;
 }
 
 .c-1,
 .c-3,
 .c-5 {
-    top: 100%;
+  top: 100%;
 }
 
-.c-1 .item, .c-3 .item, .c-5 .item {
-    top: 100%;
+.c-1 .item,
+.c-3 .item,
+.c-5 .item {
+  top: 100%;
 }
 
-.c-2 .item, 
+.c-2 .item,
 .c-4 .item {
-    top: -100%;
+  top: -100%;
 }
 
-@media(max-width: 900px) {
-   .title {
+@media (max-width: 900px) {
+  .title {
     font-size: 30px;
-   }
+  }
 
-   .icon, .icon-2 {
+  .icon,
+  .icon-2 {
     padding: 0 1em;
     font-size: 16px;
-   }
+  }
 }
 
 .content {
-    opacity: 0;
+  opacity: 0;
 }
 
 .content h1 {
-    font-family: 'DTGetai', sans-serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 128px;
-    padding-top: 20px;
+  font-family: "DTGetai", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 128px;
+  padding-top: 20px;
 }
 
 .marquee {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-       -moz-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    background-color: #fff;
-    overflow: hidden;
-    position: absolute;
-    transform: rotate(355deg) translate(-100px, -208px);
-    z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -moz-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  background-color: #fff;
+  overflow: hidden;
+  position: absolute;
+  transform: rotate(355deg) translate(-100px, -208px);
+  z-index: 1;
 
-    p {
-        color: #000000;
-        font-size: 64px;
-        font-family: 'Gotham', sans-serif;
-        font-style: italic;
-        font-weight: 800;
-        text-transform: uppercase;
-        white-space: nowrap;
-        padding: 0 5px;
-        letter-spacing: 1px;
-        -webkit-animation: marquee 7s linear infinite;
-           -moz-animation: marquee 7s linear infinite;
-             -o-animation: marquee 7s linear infinite;
-                animation: marquee 7s linear infinite;
-        
-    }
-
+  p {
+    color: #000000;
+    font-size: 64px;
+    font-family: "Gotham", sans-serif;
+    font-style: italic;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 0 5px;
+    letter-spacing: 1px;
+    -webkit-animation: marquee 7s linear infinite;
+    -moz-animation: marquee 7s linear infinite;
+    -o-animation: marquee 7s linear infinite;
+    animation: marquee 7s linear infinite;
+  }
 }
 
 @keyframes marquee {
-    0% { -webkit-transform: translateX(0); -moz-transform: translateX(0); -o-transform: translateX(0); transform: translateX(0); }
-    100% { -webkit-transform: translateX(-100%); -moz-transform: translateX(-100%); -o-transform: translateX(-100%); transform: translateX(-100%); }
+  0% {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
   }
-
-
-  .swiper {
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  100% {
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
   }
+}
 
-  .swiper-slide {
-    width: auto;
+.swiper {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.swiper-slide {
+  width: auto;
+  height: 100%;
+
+  img {
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+  }
+}
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+.homepage_text {
+  position: absolute;
+  top: 0;
+  transform: translate(0, 150%);
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  h1 {
+    .char {
+      color: white;
+      font-kerning: none;
+      position: relative;
+      line-height: 80%;
+      will-change: transform;
     }
+  }
+}
+
+.swiper-container {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.swiper-wrapper {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100vh;
+  min-height: 0;
+  min-width: 0;
+}
+
+.gallery-top {
+  height: 80%;
+  width: 100%;
+}
+
+.gallery-thumbs {
+  height: 20%;
+  box-sizing: border-box;
+}
+
+.gallery-thumbs .swiper-slide {
+  height: 100%;
+  opacity: 0.4;
+  height: 60px !important;
+  width: 60px !important;
+}
+
+.gallery-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.gallery-thumbs {
+  .swiper-slide {
+    margin-right: 0 !important;
+  }
+}
+
+.swiper-slide-thumb-active {
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.swiper-slide-next,
+.swiper-slide-prev {
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+.swiper-slide-active {
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+main {
+  width: 1024px;
+  margin: 0 auto;
+  padding: 300px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.slider_text_title {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  color: white;
+  font-family: "Gotham", sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 96px !important;
+}
+
+.slider_text_additional {
+  position: absolute;
+  bottom: 15px;
+  left: 10px;
+  font-family: "Gotham Thin" !important;
+  font-size: 48px !important;
+  color: white;
+  font-style: italic;
+}
+
+.slider_link {
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  font-family: "Gotham", sans-serif !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  padding: 15px;
+  font-size: 48px !important;
+  background-color: white;
+  color: #141414;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #141414;
+    color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.circle {
+  display: block;
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  filter: blur(15rem);
+  border-radius: 50%;
+  position: absolute;
+  transform: translateX(50%);
+}
+
+.about {
+  padding: 300px 0 0;
+  display: flex;
+  img {
+    width: 250px;
+    height: 250px;
+  }
+
+  h1 {
+    font-family: "DTGetai", sans-serif;
+    color: white;
+    font-size: 64px;
+  }
+
+  .about_text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    p {
+      font-family: "Gotham", sans-serif;
+      font-weight: 100;
+      color: white;
+      font-size: 20px;
+      font-weight: 400;
+      padding: 10px 5px 0;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.contact {
+  padding: 500px 0 0;
+  .contact_marquee {
+    transform: rotate(5deg) translate(-400px);
+  }
+
+  .contact_ways {
+    display: flex;
+    width: 100%;
+  }
+
+  .wpcf7 {
+    width: 50%;
+    label {
+      font-family: "Gotham", sans-serif;
+      font-weight: 800;
+      color: white;
+      text-transform: uppercase;
+      font-size: 24px;
+      display: block;
+      transform: translate(0, 30px);
+      transition: all 0.3s ease-in-out;
+
+      &.focused {
+        transform: translate(0, 10px);
+        transition: all 0.3s ease-in-out;
+      }
+
+      &.label_message {
+        transform: translate(0, 20px);
+      }
+    }
+
+    input {
+      background: none;
+      border: none;
+      border-bottom: 1px solid white;
+      height: 20px;
+      width: 348px;
+      &:focus {
+        outline: none;
+      }
+
+      color: white;
+      font-family: "Gotham", sans-serif;
+
+      &:hover {
+        cursor: none;
+      }
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    textarea {
+      background: white;
+      resize: none;
+      border: 1px solid white;
+      border-radius: 5px;
+      color: #141414;
+      padding: 5px;
+      font-family: "Gotham", sans-serif;
+      transform: translate(0, 10px);
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .wpcf7-not-valid-tip {
+      font-family: "Gotham", sans-serif;
+      transform: translate(0, 10px);
+    }
+
+    .wpcf7-response-output {
+      font-family: "Gotham", sans-serif;
+      color: #ffffff;
+      border: none;
+    }
+
+    input[type="submit"] {
+      background-color: #000000;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-family: "Gotham", sans-serif;
+      font-weight: 800;
+      padding: 10px;
+      height: 40px;
+      width: 100px;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+      margin-top: 25px;
+
+      &:hover {
+        cursor: none;
+        background-color: #fff;
+        color: black;
+        transition: all 0.3s ease-in-out;
+        -webkit-box-shadow: 0px 0px 21px 5px rgba(255, 255, 255, 0.5);
+        box-shadow: 0px 0px 21px 5px rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+  .contact_links {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    a {
+      color: white;
+      font-size: 20px;
+      text-decoration: none;
+      font-family: "Gotham", sans-serif;
+      font-weight: 400;
+
+      i {
+        font-size: 24px;
+      }
+    }
+
+    li {
+      padding: 5px 0;
+    }
+
+    a {
+      &:hover {
+        cursor: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  html,
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #141414;
+    font-family: "Neue Montreal";
+  }
+
+  .marquee {
+    transform: rotate(345deg) translate(-148px, -616px);
   }
 
   .homepage_text {
-    position: absolute;
-    top: 0;
-    transform: translate(0, 150%);
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     h1 {
-    
-        .char{
-        color: white;
-        font-kerning: none;
-        position: relative;
-        line-height: 80%;
-        will-change: transform;
-    }
+      font-size: 64px;
     }
   }
 
-
-  
-
-  .swiper-container {
-    width: 100%;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .swiper-slide {
-    background-size: cover;
-    background-position: center;
-  }
-
-  .swiper-wrapper {
-    width: 100%;
-    max-width: 100%;
-    max-height: 100vh;
-    min-height: 0;
-    min-width: 0;
-  }
-
-  .gallery-top {
-    height: 80%;
-    width: 100%;
-  }
-
-  .gallery-thumbs {
-    height: 20%;
-    box-sizing: border-box;
-  }
-
-  .gallery-thumbs .swiper-slide {
-    height: 100%;
-    opacity: 0.4;
-    height: 60px !important;
-    width: 60px !important;
-  }
-
-  .gallery-thumbs .swiper-slide-thumb-active {
-    opacity: 1;
-  }
-
-  .gallery-thumbs {
-    .swiper-slide {
-        margin-right: 0 !important;
-    }
-  }
-
-  .swiper-slide-thumb-active {
-    width: 60px !important;
-    height: 60px !important;
-  }
-
-
-  .swiper-slide-next, .swiper-slide-prev {
-    opacity: 0;
-    transition: all 1s ease-in-out;
-  }
-  .swiper-slide-active {
-    opacity: 1;
-    transition: all 1s ease-in-out; 
- }
-
-  main {
-    width: 1024px;
+  .banner {
+    width: 90vw;
     margin: 0 auto;
-    padding: 300px 0 0;
-    position: relative;
-    z-index: 1;
+
+    h1 {
+      font-size: 42px !important;
+      padding-top: 10px;
+    }
+
+    p {
+      font-size: 32px !important;
+    }
   }
 
-
-    .slider_text_title {
-      position: absolute;
-      top: 0;
-      left: 5px;
-      color: white;
-      font-family: "Gotham", sans-serif !important;
-      font-weight: 800 !important;
-      font-size: 96px !important;
-    }
-
-    .slider_text_additional {
-      position: absolute;
-      bottom: 15px;
-      left: 10px;
-      font-family: "Gotham Thin" !important;
-      font-size: 48px !important;
-      color: white;
-      font-style: italic;    
-    }
-
-    .slider_link {
-        position: absolute;
-        bottom: 15px;
-        right: 0;
-        font-family: "Gotham", sans-serif !important;
-        font-weight: 800 !important;
-        text-transform: uppercase;
-        padding: 15px;
-        font-size: 48px !important;
-        background-color: white;
-        color: #141414;
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-
-
-        &:hover {
-            background-color: #141414;
-            color: white;
-            transition: all 0.3s ease-in-out;
-        }
-
-        &:active {
-            transform: scale(0.9);
-        }
-    }
-
-
-    .circle {
-      display: block;
-      width: 500px;
-      height: 500px;
-      background-color: white;
-      filter: blur(15rem);
-      border-radius: 50%;
-      position: absolute;
-      transform: translateX(50%);
-    }
-
-
-    .about {
-        padding: 300px 0 0;
-        display: flex;
-        img {
-            width: 250px;
-            height: 250px;
-        }
-
-        h1 {
-            font-family: 'DTGetai', sans-serif;
-            color: white;
-            font-size: 64px;
-        }
-
-        .about_text {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            p{
-                font-family: 'Gotham', sans-serif;
-                font-weight: 100;
-                color: white;
-                font-size: 20px;
-                font-weight: 400;
-                padding: 10px 5px 0;
-                letter-spacing: 1px;
-            }
-        }
-    }
-
-
-    .contact {
-        padding: 500px 0 0;
-        .contact_marquee {
-            transform: rotate(5deg) translate(-400px);
-        }
-
-        .contact_ways {
-            display: flex;
-            width: 100%;
-        }
-
-        .wpcf7 {
-            width: 50%;
-            label {
-                font-family: "Gotham", sans-serif;
-                font-weight: 800;
-                color: white;
-                text-transform: uppercase;
-                font-size: 24px;
-                display: block;
-                transform: translate(0, 30px);
-                transition: all 0.3s ease-in-out;
-
-                &.focused {
-                    transform: translate(0, 10px);
-                    transition: all 0.3s ease-in-out;
-                }
-
-                &.label_message {
-                    transform: translate(0, 20px);
-
-                }
-            }
-
-            input {
-                background: none;
-                border: none;
-                border-bottom: 1px solid white;
-                height: 20px;
-                width: 348px;
-                &:focus {
-                    outline: none;
-                    
-                }
-
-                color: white;
-                font-family: "Gotham", sans-serif;
-
-                &:hover {
-                    cursor: none;
-                }
-            }
-
-            p {
-                margin: 10px 0;
-            }
-
-            textarea {
-                background: white;
-                resize: none;
-                border: 1px solid white;
-                border-radius: 5px;
-                color: #141414;
-                padding: 5px;
-                font-family: "Gotham", sans-serif;
-                transform: translate(0, 10px);
-                &:focus {
-                    outline: none;
-                }
-            }
-
-            .wpcf7-not-valid-tip {
-                font-family: "Gotham", sans-serif;
-                transform: translate(0, 10px);
-            }
-
-            .wpcf7-response-output {
-                font-family: "Gotham", sans-serif;
-                color: #ffffff;
-                border: none;
-            }
-
-            input[type="submit"]{
-                background-color: #000000;
-                border: none;
-                border-radius: 5px;
-                color: white;
-                font-family: "Gotham", sans-serif;
-                font-weight: 800;
-                padding: 10px;
-                height: 40px;
-                width: 100px;
-                text-transform: uppercase;
-                transition: all 0.3s ease-in-out;
-                margin-top: 25px;
-
-                &:hover{
-                    cursor: none;
-                    background-color: #fff;
-                    color: black;
-                    transition: all 0.3s ease-in-out;
-                    -webkit-box-shadow: 0px 0px 21px 5px rgba(255,255,255,0.5); 
-                    box-shadow: 0px 0px 21px 5px rgba(255,255,255,0.5);
-                }
-            }
-        }
-
-        .contact_links {
-            width: 50%;
-            display: flex;
-            align-items: center;
-            a {
-                color: white;
-                font-size: 20px;
-                text-decoration: none;
-                font-family: "Gotham", sans-serif;
-                font-weight: 400;
-
-                i {
-                    font-size: 24px;
-                }
-            }
-
-            li {
-                padding: 5px 0;
-            }
-
-            a {
-                &:hover {
-                    cursor: none;
-                }
-            }
-        }
-    }
-
-@media screen and (max-width: 420px){
-
-    .marquee {
-        transform: rotate(345deg) translate(-148px, -616px);
-    }
-
-    .homepage_text {
-        h1 {
-            font-size: 64px;
-        }
-    }
-
-    .banner {
-        width: 90vw;
-        margin: 0 auto;
-
-        h1 {
-            font-size: 42px !important;
-            padding-top: 10px;
-        }
-
-        p {
-            font-size: 32px !important;
-        }
-    }
-
-    .swiper-thumbs {
-        margin: 0 19px;
-    }
-    
+  .swiper-thumbs {
+    margin: 0 19px;
+  }
 }
 
-@media screen and (max-width: 600px) and (min-width: 420px){
-        .marquee {
-        transform: rotate(344deg) translate(-148px, -616px);
-    }
+@media screen and (max-width: 600px) and (min-width: 420px) {
+  body {
+    overflow-x: hidden;
+  }
+  .marquee {
+    transform: rotate(344deg) translate(-148px, -616px);
+  }
 
-    .homepage_text {
-        h1 {
-            font-size: 64px;
-        }
+  .homepage_text {
+    h1 {
+      font-size: 64px;
     }
-    
+  }
 }
 
 @media screen and (max-width: 768px) and (min-width: 600px) {
-        .marquee {
-        transform: rotate(349deg) translate(-148px, -415px);
-    }
+  html,
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #141414;
+    font-family: "Neue Montreal";
+  }
+  .marquee {
+    transform: rotate(349deg) translate(-148px, -415px);
+  }
 
-    .homepage_text {
-        h1 {
-            font-size: 64px;
-        }
+  .homepage_text {
+    h1 {
+      font-size: 64px;
     }
-    
+  }
 }
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
-        .marquee {
-        transform: rotate(349deg) translate(-148px, -415px);
-    }
+  html,
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #141414;
+    font-family: "Neue Montreal";
+  }
+  .marquee {
+    transform: rotate(349deg) translate(-148px, -415px);
+  }
 
-    .homepage_text {
-        h1 {
-            font-size: 64px;
-        }
+  .homepage_text {
+    h1 {
+      font-size: 64px;
     }
-    
+  }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 992px) {
-        .marquee {
-        transform: rotate(354deg) translate(-148px, -250px);
-    }
+  body {
+    overflow-x: hidden;
+  }
+  .marquee {
+    transform: rotate(354deg) translate(-148px, -250px);
+  }
 
-    .homepage_text {
-        h1 {
-            font-size: 96px;
-        }
+  .homepage_text {
+    h1 {
+      font-size: 96px;
     }
-    
+  }
 }
 
-@media screen  and (max-width: 768px){
-    .cursor-follower {
-        display: none;
-    }
-    .cursor-follower-inner {
-        display: none;
-    }
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #141414;
+    font-family: "Neue Montreal";
+  }
 
-     main {
+  .cursor-follower {
+    display: none;
+  }
+  .cursor-follower-inner {
+    display: none;
+  }
+
+  main {
+    width: 100%;
+  }
+  .circle {
+    transform: translateX(0);
+  }
+
+  .about {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0 0;
+
+    .about_text {
+      h1 {
+        text-align: center;
         width: 100%;
+      }
+
+      p {
+        font-size: 18px;
+        padding: 15px;
+      }
     }
-    .circle {
-        transform: translateX(0);
-    }
+  }
 
-        .about {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 100px 0 0;
+  .contact {
+    padding: 300px 0 0;
 
-        .about_text {
+    .contact_ways {
+      flex-direction: column;
+      margin: 0 15px 0;
 
-            h1 {
-                text-align: center;
-                width: 100%;
-            }
-
-        p {
-            font-size: 18px;
-            padding: 15px;
-        }
-        }
-        
-    }
-
-    .contact {
-        padding: 300px 0 0;
-
-        .contact_ways {
-            flex-direction: column;
-            margin: 0 15px 0;
-
-            .wpcf7 {
-                input {
-                    width: 335px;
-                }
-
-                textarea {
-                    width: 335px;
-                }
-            }
-
+      .wpcf7 {
+        input {
+          width: 335px;
         }
 
-        .contact_links {
-            width: 90%;
+        textarea {
+          width: 335px;
         }
+      }
     }
 
-    .slider_link {
-        font-size: 24px !important;
+    .contact_links {
+      width: 90%;
     }
+  }
 
-    .slider_text_additional {
-        bottom: 85px;
-    }
+  .slider_link {
+    font-size: 24px !important;
+  }
+
+  .slider_text_additional {
+    bottom: 85px;
+  }
 }
