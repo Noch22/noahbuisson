@@ -369,6 +369,7 @@ main {
   font-family: "Gotham", sans-serif !important;
   font-weight: 800 !important;
   font-size: 96px !important;
+  text-transform: uppercase;
 }
 
 .slider_text_additional {
@@ -604,7 +605,8 @@ main {
     width: 90vw;
     margin: 0 auto;
 
-    h1 {
+    h1,
+    h2 {
       font-size: 42px !important;
       padding-top: 10px;
     }
