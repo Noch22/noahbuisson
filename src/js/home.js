@@ -1,12 +1,30 @@
+import Lenis from 'lenis'
+
 function body() {
-    document.body.style.overflow = "scroll";
-    document.body.style.overflowX = "hidden";
+  document.body.style.overflow = 'scroll';
+  document.body.style.overflowX = 'hidden';
 }
 
 
 let tl = gsap.timeline({delay: 0});
 
 if(document.querySelector('.col')){
+
+  const lenis = new Lenis({
+    wrapper: document.querySelector('.smooth-scroll'),
+  })
+  
+  lenis.on('scroll', (e) => {
+    console.log(e)
+  })
+  
+  function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+  }
+  
+  requestAnimationFrame(raf)
+
   if(sessionStorage.getItem('visited')){
     tl.to(".container", {
     scale: 6,
@@ -16,7 +34,6 @@ if(document.querySelector('.col')){
     ease: "power4.inOut"
 }, "-=2");
 
-tl.call(body);
 
 tl.to(".content", {
     top: 0,
@@ -75,7 +92,7 @@ tl.to(".container", {
     ease: "power4.inOut"
 }, "-=2");
 
-tl.call(body);
+
 
 tl.to(".content", {
     top: 0,
@@ -84,7 +101,7 @@ tl.to(".content", {
     ease: "power3.out"
 });
 
-} else {
+}else {
   body();
 }
 const swiper = new Swiper('.swiper', {
@@ -203,3 +220,4 @@ document.querySelector(".cards").onmousemove = e => {
   };
 }
 }
+

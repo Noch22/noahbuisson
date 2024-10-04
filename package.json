@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.39",
+    "lenis": "^1.1.13",
     "photoswipe": "^5.4.3",
     "postcss-preset-env": "^9.5.14",
     "split-type": "^0.3.4"

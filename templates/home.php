@@ -55,7 +55,7 @@ $gallery = get_field("gallery", 'options');
         ?>
     </div>
 </div>
-<div class="content">
+<div class="content smooth-scroll">
     <div class="cursor-follower">
         <div class="cursor-follower-inner"></div>
     </div>

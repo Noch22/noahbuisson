@@ -1,4 +1,6 @@
-<header <?php if(!is_front_page()) {echo 'class="margin"';} ?>>
+<header <?php if (!is_front_page()) {
+            echo 'class="margin"';
+        } ?>>
     <div class="header_bar">
         <?php the_custom_logo() ?>
         <div class="menu">
@@ -14,31 +16,31 @@
     <div class="menu_page">
         <div class="gradient">
         </div>
-            <nav class="header">
+        <nav class="header">
             <?php
             $home = get_home_url();
             ?>
-                <div class="overlay-menu">
-                    <div class="menu-item">
-                        <p><a href="<?= $home."#work" ?>">Work</a></p>
-                    </div>
-                    <div class="menu-item">
-                        <p><a href="<?= $home."#about" ?>">About</a></p>
-                    </div>
-                    <div class="menu-item">
-                        <p><a href="<?= $home."#contact" ?>">Contact</a></p>
-                    </div>
+            <div class="overlay-menu">
+                <div class="menu-item">
+                    <p><a href="<?= $home . "#work" ?>">Work</a></p>
                 </div>
-            </nav>
-            <nav class="header_social">
-                <ul>
-                    <?php 
+                <div class="menu-item">
+                    <p><a href="<?= $home . "#about" ?>">About</a></p>
+                </div>
+                <div class="menu-item">
+                    <p><a href="<?= $home . "#contact" ?>">Contact</a></p>
+                </div>
+            </div>
+        </nav>
+        <nav class="header_social">
+            <ul>
+                <?php
                 $socials = get_field("reseau_social", "options");
-                foreach($socials as $social):
-                    ?>
-                    <li><a href="<?= $social["lien"]["url"]?>"><?= $social['icone']?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            </nav>
-        </div>
+                foreach ($socials as $social):
+                ?>
+                    <li><a href="<?= $social["lien"]["url"] ?>"><?= $social['icone'] ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+    </div>
 </header>
