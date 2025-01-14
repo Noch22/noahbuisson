@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log('in');
     const cursorFollower = document.querySelector(".cursor-follower");
     const cursorInner = document.querySelector(".cursor-follower-inner");
 

@@ -2,7 +2,6 @@ let tl = gsap.timeline({delay: 0});
 
 
 var burgers = document.querySelectorAll('button.menu');
-console.log(burgers);
 var menupage = document.querySelector('.menu_page');
 burgers.forEach(item => {
     item.addEventListener('click', function() {

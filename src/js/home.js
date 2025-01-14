@@ -14,10 +14,6 @@ if(document.querySelector('.col')){
     wrapper: document.querySelector('.smooth-scroll'),
   })
   
-  lenis.on('scroll', (e) => {
-    console.log(e)
-  })
-  
   function raf(time) {
     lenis.raf(time)
     requestAnimationFrame(raf)
