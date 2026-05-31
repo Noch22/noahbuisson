@@ -12,7 +12,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
     "build": "cross-env NODE_ENV=production webpack",
-    "build:production": "npm run build"
+    "build:prod": "npm run build"
   },
   "license": "private",
   "devDependencies": {
