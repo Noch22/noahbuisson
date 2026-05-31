@@ -138,7 +138,10 @@ $gallery = get_field("gallery", 'options');
                 <img src="<?= get_template_directory_uri() . "/src/assets/LOGO.png" ?>" alt="image Noah Buisson">
                 <div class="about_text">
                     <h1>Noah Buisson</h1>
-                    <p>Salut 👋! Moi, c'est <span id="me">Noah</span>. Passionné par la photographie, le développement web, l'IoT et tout ce qui concerne le web, je suis actuellement en 3ème année de BUT Métiers du Multimédia et de l'Internet à Chambéry (73). Explorez mes projets en vous baladant sur mon site ! Si vous avez des besoins, une petite rubrique contact se trouve juste en dessous. N'hésitez pas à me contacter !</p>
+                    <?php 
+                    $presentation = get_field("presentation", "options");
+                    ?>
+                    <p><?= $presentation ?></p>
                 </div>
             </div>
             <div class="contact">

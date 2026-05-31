@@ -1,158 +1,153 @@
 .profile_picture {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    img {
-        width: 250px;
-        height: 250px;
-        filter: drop-shadow(0px 0px 40px #ffffff);
-    }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  img {
+    width: 250px;
+    height: 250px;
+    filter: drop-shadow(0px 0px 40px #ffffff);
+  }
 }
 
 .profile_name {
-    h1 {
-        font-size: 64px;
-        font-family: 'DTGetai', sans-serif;
-        color: white;
-        text-transform: uppercase;
-        text-align: center;
-    }
+  h1 {
+    font-size: 64px;
+    font-family: "DTGetai", sans-serif;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+  }
 
-    #buisson {
-        display: inline-block;
-    }
+  #buisson {
+    display: inline-block;
+  }
 
-
-    p {
-        text-align: center;
-        font-family: "Gotham", sans-serif;
-        color: white;
-        font-size: 18px;
-    }
+  p {
+    text-align: center;
+    font-family: "Gotham", sans-serif;
+    color: white;
+    font-size: 18px;
+  }
 }
-
 
 .cards {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    flex-wrap: wrap;
-    flex-direction: row;
-    padding: 40px 0 0;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    margin: 80px 250px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 40px 0 0;
+  padding-bottom: 20px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 250px;
 
-    .card {
-        display: block;
-        width: 365px;
-        height: 345px;
-        position: relative;
-        padding: 25px;
-        background-color: rgba(0, 0, 0, 0.25);
-        border-radius: 50px;
+  .card {
+    display: block;
+    width: 365px;
+    height: 345px;
+    position: relative;
+    padding: 25px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
 
     &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50px;
+      padding: 10px;
+      background: linear-gradient(45deg, black, grey);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    .card_top {
+      display: flex;
+
+      i {
+        font-size: 60px;
+        color: white;
+        margin-right: 10px;
+      }
+
+      p {
+        font-size: 20px;
+        color: white;
+        font-family: "Gotham", sans-serif;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      bottom: 80px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "Gotham Black", sans-serif;
+      color: white;
+      text-transform: uppercase;
+      font-size: 24px;
+      padding: 15px 25px;
+      border: 5px solid white;
+      border-radius: 15px;
+      background: linear-gradient(
+        90deg,
+        rgba(9, 9, 9, 1) 0%,
+        rgba(9, 9, 9, 0) 100%
+      );
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        border: 2px solid white;
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+
+      &::before,
+      &::after {
+        border-radius: inherit;
         content: "";
+        height: 100%;
+        left: 0px;
+        opacity: 0;
         position: absolute;
-        inset: 0;
-        border-radius: 50px; 
-        padding: 10px; 
-        background:linear-gradient(45deg,black,grey); 
-        -webkit-mask: 
-            linear-gradient(#fff 0 0) content-box, 
-            linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-                mask-composite: exclude; 
+        top: 0px;
+        transition: opacity 500ms;
+        width: 100%;
+      }
+
+      &::before {
+        background: radial-gradient(
+          400px circle at var(--mouse-x) var(--mouse-y),
+          rgba(255, 255, 255, 0.473),
+          transparent 40%
+        );
+        z-index: 3;
+      }
     }
+  }
 
-
-
-        .card_top {
-            display: flex;
-
-        i {
-            font-size: 60px;
-            color: white;
-            margin-right: 10px;
-        }
-        
-        p {
-            font-size: 20px;
-            color: white;
-            font-family: 'Gotham', sans-serif;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-        }
-
-        }
-
-        a {
-            text-decoration: none;
-            bottom: 80px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: "Gotham Black", sans-serif;
-            color: white;
-            text-transform: uppercase;
-            font-size: 24px;
-            padding: 15px 25px;
-            border: 5px solid white;
-            border-radius: 15px;
-            background: linear-gradient(90deg, rgba(9,9,9,1) 0%, rgba(9,9,9,0) 100%);
-            transition: all 0.3s ease-in-out;
-
-            &:hover {
-                border: 2px solid white;
-                transition: all 0.3s ease-in-out;
-            }
-
-
-
-
-            &:hover::before {
-            opacity: 1;
-            }
-
-            &::before,
-            &::after {
-            border-radius: inherit;
-            content: "";
-            height: 100%;
-            left: 0px;
-            opacity: 0;
-            position: absolute;
-            top: 0px;
-            transition: opacity 500ms;
-            width: 100%;
-            }
-
-            &::before {
-            background: radial-gradient(
-                400px circle at var(--mouse-x) var(--mouse-y), 
-                rgba(255, 255, 255, 0.473),
-                transparent 40%
-            );
-            z-index: 3;
-            }
-
-        }
-}
-
-    .instagram {
-        &::before {
-            background:linear-gradient(45deg,#A43996,#FED523); 
-        }
-}
-
-.linkedin {
+  .instagram {
     &::before {
-        background: linear-gradient(90deg, #0A66C2 0%, rgb(128, 185, 255) 100%);
+      background: linear-gradient(45deg, #a43996, #fed523);
     }
+  }
 
-}
+  .linkedin {
+    &::before {
+      background: linear-gradient(90deg, #0a66c2 0%, rgb(128, 185, 255) 100%);
+    }
+  }
 }
 
 @media (max-width: 800px) {

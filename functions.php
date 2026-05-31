@@ -73,3 +73,14 @@ add_action( 'wp_head', 'add_viewport_meta_tag' , '1' );
 function add_viewport_meta_tag() {
     echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 }
+
+
+add_filter('acf/settings/save_json', function ($path) {
+    return get_stylesheet_directory() . '/acf-json';
+});
+
+add_filter('acf/settings/load_json', function ($paths) {
+    unset($paths[0]);
+    $paths[] = get_stylesheet_directory() . '/acf-json';
+    return $paths;
+});
