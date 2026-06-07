@@ -1,134 +1,208 @@
-let tl = gsap.timeline({delay: 0});
+import { SplitText } from "gsap/SplitText";
 
+gsap.registerPlugin(SplitText);
 
-var burgers = document.querySelectorAll('button.menu');
-var menupage = document.querySelector('.menu_page');
-burgers.forEach(item => {
-    item.addEventListener('click', function() {
-        burgers.forEach(item => {
-            item.classList.toggle('opened');
-        });
-        menupage.classList.toggle('opened');
+const initHeaderMenu = () => {
+  const header = document.querySelector(".menu");
+  if (!header) return;
 
+  const elements = Array.from(header.querySelectorAll("a.nav-roll"));
+  const COLLAPSED_WIDTH = "fit-content";
+  const INTRO_SESSION_KEY = "header-intro-played";
+  const controller = new AbortController();
+  let activeTimeline;
+  let isIntroRunning = false;
+  let hasIntroPlayed = false;
 
+  const getExpandedWidth = () =>
+    elements.length * 100 + (elements.length - 1) * 16;
+
+  const measureExpandedHeight = () => {
+    gsap.set(elements, { display: "flex", opacity: 0 });
+    const h = header.offsetHeight;
+    gsap.set(elements, { display: "none", opacity: 0 });
+    return h;
+  };
+
+  const stopActiveAnimation = () => {
+    activeTimeline?.kill();
+    activeTimeline = null;
+    isIntroRunning = false;
+    gsap.killTweensOf(header);
+    gsap.killTweensOf(elements);
+  };
+
+  const setCollapsedState = () => {
+    gsap.set(elements, {
+      opacity: 0,
+      display: "none",
     });
+    gsap.set(header, {
+      width: COLLAPSED_WIDTH,
+      opacity: 0.8,
+    });
+  };
 
-});
+  const openHeader = () => {
+    stopActiveAnimation();
 
-const gradientBox = document.querySelector('.gradient');
+    activeTimeline = gsap
+      .timeline({
+        onComplete: () => {
+          activeTimeline = null;
+        },
+      })
+      .to("#header-plus", {
+        duration: 0.3,
+        opacity: 0,
+        display: "none",
+        ease: "power2.out",
+        overwrite: "auto",
+      })
+      .to(header, {
+        duration: 0.4,
+        width: getExpandedWidth(),
+        height: measureExpandedHeight(),
+        opacity: 1,
+        ease: "power4.inOut",
+        overwrite: "auto",
+      })
+      .set(elements, {
+        display: "flex",
+      })
+      .to(elements, {
+        duration: 0.35,
+        opacity: 1,
+        stagger: 0.08,
+        ease: "power4.inOut",
+        overwrite: "auto",
+      });
+  };
 
- window.matchMedia("(max-width: 768px)").matches ? 
+  const closeHeader = () => {
+    stopActiveAnimation();
 
-" " : tl.to(gradientBox, {
-    duration: 10, // Durée de l'animation en secondes
-    background: 'linear-gradient(135deg, #ffcc00, #ff6699)', // Nouveau dégradé
-    ease: 'power2.inOut', // Facilité d'animation (vous pouvez ajuster cela selon vos préférences)
-    repeat: -1, // Répéter l'animation indéfiniment
-    yoyo: true // Faire l'animation en sens inverse à la fin
-});
+    activeTimeline = gsap
+      .timeline({
+        onComplete: () => {
+          activeTimeline = null;
+        },
+      })
+      .to(elements, {
+        duration: 0.35,
+        opacity: 0,
+        ease: "power4.inOut",
+        stagger: 0.08,
+        overwrite: "auto",
+      })
+      .set(elements, {
+        display: "none",
+      })
+      .to(header, {
+        duration: 0.4,
+        width: COLLAPSED_WIDTH,
+        opacity: 0.8,
+        ease: "power2.out",
+        overwrite: "auto",
+      })
+      .to("#header-plus", {
+        duration: 0.3,
+        opacity: 1,
+        display: "block",
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+  };
 
-document.addEventListener('DOMContentLoaded', function() {  
-    const togglebutton = document.querySelector('button.menu');
-    const links = document.querySelectorAll('.menu-item a');
-    let isOpen = false;
+  const shouldPlayIntro = () => {
+    if (hasIntroPlayed) return false;
 
-    gsap.set(".menu-item p", { y: 225 });
+    try {
+      if (sessionStorage.getItem(INTRO_SESSION_KEY) === "1") {
+        hasIntroPlayed = true;
+        return false;
+      }
 
-    const timeline = gsap.timeline({ paused: true });
-    const mobile = gsap.timeline({ paused: true });
-    if(window.matchMedia("(max-width: 768px)").matches){ 
-        gsap.set(".menu-item p", { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" });
+      sessionStorage.setItem(INTRO_SESSION_KEY, "1");
+      return true;
+    } catch {
+      return true;
     }
-    
+  };
 
-    timeline.to(".custom-logo-link", {
-        duration: 0.5,
-        opacity: 0,
-        ease: "power4.inOut",
+  const buildIntroTimeline = (tl) => {
+    const elementSpans = Array.from(header.querySelectorAll("a.nav-roll span"));
+    console.log("element spans:", elementSpans);
+
+    tl.set(elements, {
+      opacity: 1,
+      display: "flex",
     })
-
-    timeline.to(".menu_page", {
-        duration: 0.5,
-        y: 0,
+      .set(header, {
+        width: getExpandedWidth(),
+        height: header.offsetHeight,
         opacity: 1,
-        ease: "power4.inOut",
-    }, "-=.5")
+      })
+      .from(header, { duration: 1, y: -200, ease: "power2.out" });
 
-    timeline.to(".header", {
-        duration: 1,
-        ease: "power4.inOut",
-    });
-    
-    timeline.to(".menu-item p", {
-        duration: 1.5,
-        y: 0,
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        stagger: 0.2,
-        ease: "power4.out",
-        opacity: 1,
-    }, "-=1");
-    
-
-    //MOBILE 
-
-    mobile.to(".custom-logo-link", {
-        duration: 0.5,
+    elementSpans.forEach((el, i) => {
+      const split = new SplitText(el, { type: "chars" });
+      tl.from(split.chars, {
+        delay: i * 0.02,
         opacity: 0,
-        ease: "power4.inOut",
-    })
-
-    mobile.to(".menu_page", {
+        y: 20,
+        stagger: 0.05,
+        ease: "power2.out",
         duration: 0.5,
-        y: 0,
-        opacity: 1,
-        ease: "power4.inOut",
-    }, "-=.5")
-
-    mobile.to(".header", {
-        duration: 1,
-        ease: "power4.inOut",
+      });
     });
+  };
 
-    mobile.to(".menu-item p", {
-        duration: 1.5,
-        y: 0,
-        stagger: 0.2,
-        opacity: 1,
-        ease: "power4.out",
-    }, "-=1")
+  const playIntroOnFirstLoad = () => {
+    if (!shouldPlayIntro() || isIntroRunning) return;
 
-if(togglebutton){
-    togglebutton.addEventListener('click', function() {
-        if (isOpen) {
-            if(window.matchMedia("(max-width: 768px)").matches){ 
-                mobile.reverse();
-            } else {
-            timeline.reverse();
-            }
-        } else {
-            if(window.matchMedia("(max-width: 768px)").matches){ 
-                mobile.play();
-            } else {
-            timeline.play();
-            }
+    stopActiveAnimation();
+    isIntroRunning = true;
+
+    activeTimeline = gsap.timeline({
+      onComplete: () => {
+        activeTimeline = null;
+        isIntroRunning = false;
+        hasIntroPlayed = true;
+
+        if (header.matches(":hover")) {
+          openHeader();
         }
-        isOpen = !isOpen;
+      },
     });
-}
-    links.forEach(link => {
-    link.addEventListener('click', function() {
-        if(window.matchMedia("(max-width: 768px)").matches){ 
-            mobile.reverse();
-        } else {
-        timeline.reverse();
-        }
-        isOpen = !isOpen;
-        togglebutton.classList.toggle('opened');
-        menupage.classList.toggle('opened');
+
+    buildIntroTimeline(activeTimeline);
+  };
+
+  setCollapsedState();
+
+  header.addEventListener("mouseenter", openHeader, {
+    signal: controller.signal,
+  });
+
+  header.addEventListener("mouseleave", closeHeader, {
+    signal: controller.signal,
+  });
+
+  if (document.readyState === "complete") {
+    playIntroOnFirstLoad();
+  } else {
+    window.addEventListener("load", playIntroOnFirstLoad, {
+      once: true,
+      signal: controller.signal,
     });
-});
+  }
 
+  window.__headerMenuCleanup = () => {
+    controller.abort();
+    stopActiveAnimation();
+  };
+};
 
-});
-
-
+window.__headerMenuCleanup?.();
+initHeaderMenu();
