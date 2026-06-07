@@ -1023,6 +1023,7 @@ html.lenis body {
   opacity: 0.8;
   min-width: 7px;
   min-height: 7px;
+  z-index: 99;
 }
   
   .menu .nav-roll {
