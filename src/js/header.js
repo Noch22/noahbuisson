@@ -17,7 +17,7 @@ window.matchMedia("(max-width: 768px)").matches
   ? " "
   : tl.to(gradientBox, {
       duration: 10, // Durée de l'animation en secondes
-      background: "linear-gradient(135deg, #141414, #555353)", // Nouveau dégradé
+      background: "linear-gradient(135deg, #141414, #1E2C40)", // Nouveau dégradé
       ease: "power2.inOut", // Facilité d'animation (vous pouvez ajuster cela selon vos préférences)
       repeat: -1, // Répéter l'animation indéfiniment
       yoyo: true, // Faire l'animation en sens inverse à la fin
