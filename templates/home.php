@@ -93,6 +93,7 @@ $gallery = get_field("gallery", 'options');
             ?>
             <div class="circle"></div>
             <div class="banner" id="work">
+                <button class="swiper-button-avant" tabindex="-1"></button>
                 <div class="swiper-container gallery-top">
                     <div class="swiper-wrapper">
                         <?php
@@ -118,6 +119,7 @@ $gallery = get_field("gallery", 'options');
                         ?>
                     </div>
                 </div>
+                <button class="swiper-button-apres" tabindex="-1"></button>
             </div>
             <div class="swiper-container gallery-thumbs">
                 <div class="swiper-wrapper">
@@ -137,11 +139,11 @@ $gallery = get_field("gallery", 'options');
             <div class="about" id="about">
                 <img src="<?= get_template_directory_uri() . "/src/assets/LOGO.png" ?>" alt="image Noah Buisson">
                 <div class="about_text">
-                    <h1>Noah Buisson</h1>
-                    <?php 
+                    <h1 id="name">Noah Buisson</h1>
+                    <?php
                     $presentation = get_field("presentation", "options");
                     ?>
-                    <p><?= $presentation ?></p>
+                    <p id="presentation"><?= $presentation ?></p>
                 </div>
             </div>
             <div class="contact">

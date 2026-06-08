@@ -4,8 +4,6 @@
  Author: Noah Buisson
  Author URI: https://noahbuisson.fr
 */
-.grecaptcha-badge { visibility: hidden; }
-
-body {
-    cursor: none !important;
+.grecaptcha-badge {
+  visibility: hidden;
 }
