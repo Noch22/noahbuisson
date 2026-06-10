@@ -4125,8 +4125,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const images = document.querySelectorAll("img");
   const links = document.querySelectorAll("a");
   const footer = document.querySelector("footer");
-  const previous = document.querySelector(".swiper-button-avant");
-  const next = document.querySelector(".swiper-button-apres");
+  const previous = document.querySelectorAll(".swiper-button-avant");
+  const next = document.querySelectorAll(".swiper-button-apres");
   images.forEach((image) => {
     image.addEventListener("mouseenter", () => {
       cursorInner.style.backgroundImage = `url('https://www.noahbuisson.fr/wp-content/uploads/2026/06/arrow_up.png')`;
@@ -4176,35 +4176,39 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
   if (previous) {
-    previous.addEventListener("mouseenter", () => {
-      cursorInner.style.backgroundImage = `url('https://www.noahbuisson.fr/wp-content/uploads/2026/06/arrow_left.png')`;
-      cursorInner.style.width = "80px";
-      cursorInner.style.height = "80px";
-      cursorInner.style.backgroundSize = "40px";
-      cursorInner.style.opacity = "1";
-    });
-    previous.addEventListener("mouseleave", () => {
-      cursorInner.style.backgroundImage = "none";
-      cursorInner.style.width = "8px";
-      cursorInner.style.height = "8px";
-      cursorInner.style.backgroundSize = "0px";
-      cursorInner.style.opacity = "0.2";
+    previous.forEach((previous2) => {
+      previous2.addEventListener("mouseenter", () => {
+        cursorInner.style.backgroundImage = `url('https://www.noahbuisson.fr/wp-content/uploads/2026/06/arrow_left.png')`;
+        cursorInner.style.width = "80px";
+        cursorInner.style.height = "80px";
+        cursorInner.style.backgroundSize = "40px";
+        cursorInner.style.opacity = "1";
+      });
+      previous2.addEventListener("mouseleave", () => {
+        cursorInner.style.backgroundImage = "none";
+        cursorInner.style.width = "8px";
+        cursorInner.style.height = "8px";
+        cursorInner.style.backgroundSize = "0px";
+        cursorInner.style.opacity = "0.2";
+      });
     });
   }
   if (next) {
-    next.addEventListener("mouseenter", () => {
-      cursorInner.style.backgroundImage = `url('https://www.noahbuisson.fr/wp-content/uploads/2026/06/arrow_right.png')`;
-      cursorInner.style.width = "80px";
-      cursorInner.style.height = "80px";
-      cursorInner.style.backgroundSize = "40px";
-      cursorInner.style.opacity = "1";
-    });
-    next.addEventListener("mouseleave", () => {
-      cursorInner.style.backgroundImage = "none";
-      cursorInner.style.width = "8px";
-      cursorInner.style.height = "8px";
-      cursorInner.style.backgroundSize = "0px";
-      cursorInner.style.opacity = "0.2";
+    next.forEach((next2) => {
+      next2.addEventListener("mouseenter", () => {
+        cursorInner.style.backgroundImage = `url('https://www.noahbuisson.fr/wp-content/uploads/2026/06/arrow_right.png')`;
+        cursorInner.style.width = "80px";
+        cursorInner.style.height = "80px";
+        cursorInner.style.backgroundSize = "40px";
+        cursorInner.style.opacity = "1";
+      });
+      next2.addEventListener("mouseleave", () => {
+        cursorInner.style.backgroundImage = "none";
+        cursorInner.style.width = "8px";
+        cursorInner.style.height = "8px";
+        cursorInner.style.backgroundSize = "0px";
+        cursorInner.style.opacity = "0.2";
+      });
     });
   }
 });
@@ -4362,20 +4366,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var split_type__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! split-type */ "./node_modules/split-type/dist/index.js");
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
-let split = SplitText.create("#presentation", {
+const presentation = document.querySelector("#presentation");
+let split = SplitText.create(presentation, {
   type: "chars"
 });
-gsap.from(split.chars, {
-  color: "rgb(139 139 139)",
-  stagger: 0.5,
-  scrollTrigger: {
-    trigger: "#presentation",
-    scrub: true,
-    start: "top 45%",
-    end: "bottom 50%",
-    scroller: ".content"
-  }
-});
+if (presentation) {
+  gsap.from(split.chars, {
+    color: "rgb(139 139 139)",
+    stagger: 0.5,
+    scrollTrigger: {
+      trigger: "#presentation",
+      scrub: true,
+      start: "top 45%",
+      end: "bottom 50%",
+      scroller: ".content"
+    }
+  });
+}
 function body() {
   document.body.style.overflow = "scroll";
   document.body.style.overflowX = "hidden";
@@ -4817,7 +4824,7 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
     if(true) {
-      // 1780920767421
+      // 1781095140331
       var cssReload = __webpack_require__(/*! ../../mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {"locals":false});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -4837,7 +4844,7 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
     if(true) {
-      // 1780926337255
+      // 1781095140386
       var cssReload = __webpack_require__(/*! ../node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js */ "./node_modules/mini-css-extract-plugin/dist/hmr/hotModuleReplacement.js")(module.id, {"locals":false});
       module.hot.dispose(cssReload);
       module.hot.accept(undefined, cssReload);
@@ -6142,7 +6149,7 @@ function clamp(t,i,e){return Math.max(t,Math.min(i,e))}class Animate{constructor
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("b36385d26b15625dc9ae")
+/******/ 		__webpack_require__.h = () => ("d03b671f2089ad20e48b")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

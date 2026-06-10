@@ -1,21 +1,26 @@
 import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-let split = SplitText.create("#presentation", {
+const presentation = document.querySelector('#presentation')
+
+let split = SplitText.create(presentation, {
   type: "chars",
 });
 
-gsap.from(split.chars, {
-  color: "rgb(139 139 139)",
-  stagger: 0.5,
-  scrollTrigger: {
-    trigger: "#presentation",
-    scrub: true,
-    start: "top 45%",
-    end: "bottom 50%",
-    scroller: ".content",
-  },
-});
+if(presentation){
+  gsap.from(split.chars, {
+    color: "rgb(139 139 139)",
+    stagger: 0.5,
+    scrollTrigger: {
+      trigger: "#presentation",
+      scrub: true,
+      start: "top 45%",
+      end: "bottom 50%",
+      scroller: ".content",
+    },
+  });
+}
+
 
 function body() {
   document.body.style.overflow = "scroll";

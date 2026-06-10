@@ -93,7 +93,6 @@ $gallery = get_field("gallery", 'options');
             ?>
             <div class="circle"></div>
             <div class="banner" id="work">
-                <button class="swiper-button-avant" tabindex="-1"></button>
                 <div class="swiper-container gallery-top">
                     <div class="swiper-wrapper">
                         <?php
@@ -103,15 +102,17 @@ $gallery = get_field("gallery", 'options');
                             $title = get_field("nom_du_projet", $image->ID);
                             $add_text = get_field("texte_additionnel", $image->ID);
                             $project_type = get_field("type_de_projet", $image->ID);
-                        ?>
+                            ?>
 
-                            <div class="swiper-slide">
+<div class="swiper-slide">
+                                <button class="swiper-button-avant"></button>
 
                                 <h2 class="slider_text_title"><?= $title ?></h2>
                                 <p class="slider_text_additional"><?= $add_text ?></p>
                                 <a href="<?= $link ?>" class="slider_link">Découvrir</a>
                                 <img width="<?= $cover['sizes']['cover_image-width'] ?>" height="<?= $cover['sizes']['cover_image-height'] ?>" src="<?= $cover['sizes']['cover_image'] ?>" alt="<?= $cover['alt'] ?>">
 
+                                <button class="swiper-button-apres" tabindex="-1"></button>
                             </div>
 
                         <?php
@@ -119,7 +120,6 @@ $gallery = get_field("gallery", 'options');
                         ?>
                     </div>
                 </div>
-                <button class="swiper-button-apres" tabindex="-1"></button>
             </div>
             <div class="swiper-container gallery-thumbs">
                 <div class="swiper-wrapper">

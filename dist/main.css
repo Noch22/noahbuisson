@@ -506,9 +506,9 @@ img {
     position: absolute;
     height: 100%;
     width: 50%;
-    z-index: 1;
     background: none;
     border: none;
+    z-index: 3;
   }
 
 .banner .swiper-button-avant {
@@ -539,7 +539,8 @@ img {
   max-height: 100vh;
   min-height: 0;
   min-width: 0;
-  z-index: 3;
+  z-index: auto !important;
+  z-index: initial !important;
 }
 
 .gallery-top {
@@ -635,7 +636,7 @@ main {
   text-decoration: none;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  z-index: 999;
+  z-index: 4;
 }
 
 .slider_link:hover {
@@ -643,7 +644,7 @@ main {
     color: white;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    z-index: 999;
+    z-index: 4;
   }
 
 .slider_link:active {

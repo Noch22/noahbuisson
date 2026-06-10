@@ -327,9 +327,9 @@ img {
     position: absolute;
     height: 100%;
     width: 50%;
-    z-index: 1;
     background: none;
     border: none;
+    z-index: 3;
   }
 
   .swiper-button-avant {
@@ -361,7 +361,7 @@ img {
   max-height: 100vh;
   min-height: 0;
   min-width: 0;
-  z-index: 3;
+  z-index: unset !important;
 }
 
 .gallery-top {
@@ -453,13 +453,13 @@ main {
   color: #141414;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
-  z-index: 999;
+  z-index: 4;
 
   &:hover {
     background-color: #141414;
     color: white;
     transition: all 0.3s ease-in-out;
-    z-index: 999;
+    z-index: 4;
   }
 
   &:active {
