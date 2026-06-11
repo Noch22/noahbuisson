@@ -102,15 +102,17 @@ $gallery = get_field("gallery", 'options');
                             $title = get_field("nom_du_projet", $image->ID);
                             $add_text = get_field("texte_additionnel", $image->ID);
                             $project_type = get_field("type_de_projet", $image->ID);
-                        ?>
+                            ?>
 
-                            <div class="swiper-slide">
+<div class="swiper-slide">
+                                <button class="swiper-button-avant"></button>
 
                                 <h2 class="slider_text_title"><?= $title ?></h2>
                                 <p class="slider_text_additional"><?= $add_text ?></p>
                                 <a href="<?= $link ?>" class="slider_link">Découvrir</a>
                                 <img width="<?= $cover['sizes']['cover_image-width'] ?>" height="<?= $cover['sizes']['cover_image-height'] ?>" src="<?= $cover['sizes']['cover_image'] ?>" alt="<?= $cover['alt'] ?>">
 
+                                <button class="swiper-button-apres" tabindex="-1"></button>
                             </div>
 
                         <?php
@@ -137,11 +139,11 @@ $gallery = get_field("gallery", 'options');
             <div class="about" id="about">
                 <img src="<?= get_template_directory_uri() . "/src/assets/LOGO.png" ?>" alt="image Noah Buisson">
                 <div class="about_text">
-                    <h1>Noah Buisson</h1>
-                    <?php 
+                    <h1 id="name">Noah Buisson</h1>
+                    <?php
                     $presentation = get_field("presentation", "options");
                     ?>
-                    <p><?= $presentation ?></p>
+                    <p id="presentation"><?= $presentation ?></p>
                 </div>
             </div>
             <div class="contact">
