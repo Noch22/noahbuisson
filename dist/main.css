@@ -1028,6 +1028,11 @@ main {
   .slider_text_additional {
     bottom: 85px;
   }
+
+  .gallery-thumbs {
+      margin-top: 10px;
+
+  }
 }
 
 .header_bar {
