@@ -4,10 +4,10 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 const presentation = document.querySelector('#presentation')
 
 let split = SplitText.create(presentation, {
-  type: "chars",
+  type: "words, chars",
 });
 
-if(presentation){
+if (presentation) {
   gsap.from(split.chars, {
     color: "rgb(139 139 139)",
     stagger: 0.5,

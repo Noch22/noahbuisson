@@ -25,56 +25,50 @@ header {
         opacity: 0;
       }
 
-      .custom-logo-link {
-        &.opened {
-          opacity: 0;
+      will-change: opacity;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+
+      .menu-item {
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+
+        a {
+          display: inline-block;
+          transition: all 0.3s ease-in-out;
+          font-family: "Gotham", sans-serif !important;
+          text-transform: uppercase;
+          text-decoration: none;
+          color: white;
+
+          &::after {
+            content: attr(data-label);
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            right: auto;
+            left: 0;
+            bottom: auto;
+            transform: translateY(105%);
+            transition: all 0.3s ease-in-out;
+          }
         }
 
-        will-change: opacity;
-      }
 
-      .menu {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
+        &:hover a {
+          transform: translateY(-105%);
 
-        .menu-item {
-          display: inline-block;
-          overflow: hidden;
-          position: relative;
-
-          a {
-            display: inline-block;
+          &::after {
+            transform: translateY(100%);
+            top: 0;
             transition: all 0.3s ease-in-out;
-            font-family: "Gotham", sans-serif !important;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: white;
-
-            &::after {
-              content: attr(data-label);
-              display: block;
-              overflow: hidden;
-              width: 100%;
-              position: absolute;
-              top: 50%;
-              right: auto;
-              left: 0;
-              bottom: auto;
-              transform: translateY(105%);
-              transition: all 0.3s ease-in-out;
-            }
-          }
-
-
-          &:hover a {
-            transform: translateY(-105%);
-
-            &::after {
-              transform: translateY(100%);
-              top: 0;
-              transition: all 0.3s ease-in-out;
-            }
           }
         }
       }
@@ -90,6 +84,8 @@ header {
     }
   }
 }
+
+
 
 
 
