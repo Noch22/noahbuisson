@@ -1,3 +1,7 @@
+.top_project {
+    margin-top: 40px;
+}
+
 .top_titles {
     h1 {
         font-family: 'DTGetai', sans-serif;
@@ -41,26 +45,29 @@
     line-height: 1.2em;
 
     h1 {
-        font-family: "Gotham", sans-serif;;
+        font-family: "Gotham", sans-serif;
+        ;
         font-weight: 800;
         font-size: 32px;
         line-height: 1em;
     }
 
     h2 {
-        font-family: "Gotham", sans-serif;;
+        font-family: "Gotham", sans-serif;
+        ;
         font-weight: 800;
         font-size: 24px;
     }
 
     p {
-        font-family: "Gotham", sans-serif;;
+        font-family: "Gotham", sans-serif;
+        ;
         font-weight: 400;
     }
 
     ul {
         list-style: circle;
-        
+
     }
 
     ol {
@@ -103,63 +110,59 @@
                 transform: scale(1.1);
             }
 
-        &:nth-child(5n - 1) {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
+            &:nth-child(5n - 1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
         }
     }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
     .grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         grid-auto-rows: 250px;
 
         .item {
-        &:nth-child(5n - 1) {
-            grid-column: unset !important;
-            grid-row: unset !important;
-        }}
+            &:nth-child(5n - 1) {
+                grid-column: unset !important;
+                grid-row: unset !important;
+            }
+        }
     }
 }
 
 
-@media screen and (max-width: 420px){
-    .marquee_projects{
+@media screen and (max-width: 420px) {
+    .marquee_projects {
         transform: rotate(24deg) translate(-277px, 169px);
     }
 }
 
-@media screen and (max-width: 600px) and (min-width: 420px){
-        .marquee_projects{
+@media screen and (max-width: 600px) and (min-width: 420px) {
+    .marquee_projects {
         transform: rotate(14deg) translate(-277px, 169px);
     }
 
 }
 
 @media screen and (max-width: 768px) and (min-width: 600px) {
-        .marquee_projects{
+    .marquee_projects {
         transform: rotate(13deg) translate(-277px, 169px);
     }
 
 }
 
-@media screen and (max-width: 992px) and (min-width: 768px) {
+@media screen and (max-width: 992px) and (min-width: 768px) {}
 
-    
-}
+@media screen and (max-width: 1200px) and (min-width: 992px) {}
 
-@media screen and (max-width: 1200px) and (min-width: 992px) {
-
-    
-}
-
-@media screen  and (max-width: 768px){
+@media screen and (max-width: 768px) {
 
     .top_project {
         .top_titles {
             padding: 0 10px;
+
             h1 {
                 font-size: 48px;
             }
