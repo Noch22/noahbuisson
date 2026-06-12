@@ -8,13 +8,13 @@
             $home = get_home_url();
             ?>
             <div class="menu-item">
-                <p><a href="<?= $home . "#work" ?>">Work</a></p>
+                <a href="<?= $home . "#work" ?>" data-label="Work">Work</a>
             </div>
             <div class="menu-item">
-                <p><a href="<?= $home . "#about" ?>">About</a></p>
+                <a href="<?= $home . "#about" ?>" data-label="About">About</a>
             </div>
             <div class="menu-item">
-                <p><a href="<?= $home . "#contact" ?>">Contact</a></p>
+                <a href="<?= $home . "#contact" ?>" data-label="Contact">Contact</a>
             </div>
         </div>
     </div>

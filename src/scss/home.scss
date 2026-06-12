@@ -22,6 +22,7 @@ html.lenis body {
 .top_header {
   height: 100%;
   width: 100%;
+
   &.gallery {
     img {
       width: 100%;
@@ -53,7 +54,8 @@ body {
   position: fixed;
   width: 20px;
   height: 20px;
-  border: 2px solid #999999; /* Contour gris */
+  border: 2px solid #999999;
+  /* Contour gris */
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -66,7 +68,8 @@ body {
 .cursor-follower-inner {
   width: 8px;
   height: 8px;
-  background-color: #ffffff; /* Point blanc au milieu */
+  background-color: #ffffff;
+  /* Point blanc au milieu */
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -91,6 +94,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -274,6 +278,7 @@ img {
     -o-transform: translateX(0);
     transform: translateX(0);
   }
+
   100% {
     -webkit-transform: translateX(-100%);
     -moz-transform: translateX(-100%);
@@ -306,6 +311,7 @@ img {
   z-index: 1;
   width: 100%;
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+
   h1 {
     .char {
       color: white;
@@ -406,6 +412,7 @@ img {
   opacity: 0;
   transition: all 1s ease-in-out;
 }
+
 .swiper-slide-active {
   opacity: 1;
   transition: all 1s ease-in-out;
@@ -481,6 +488,7 @@ main {
 .about {
   padding: 300px 0 0;
   display: flex;
+
   img {
     width: 250px;
     height: 250px;
@@ -496,6 +504,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     p {
       font-family: "Gotham", sans-serif;
       font-weight: 100;
@@ -510,6 +519,7 @@ main {
 
 .contact {
   padding: 500px 0 0;
+
   .contact_marquee {
     transform: rotate(5deg) translate(-400px);
   }
@@ -521,6 +531,7 @@ main {
 
   .wpcf7 {
     width: 50%;
+
     label {
       font-family: "Gotham", sans-serif;
       font-weight: 800;
@@ -547,12 +558,14 @@ main {
       border-bottom: 1px solid white;
       height: 20px;
       width: 348px;
+
       &:focus {
         outline: none;
       }
 
       color: white;
-      font-family: "Gotham", sans-serif;
+      font-family: "Gotham",
+      sans-serif;
     }
 
     p {
@@ -568,6 +581,7 @@ main {
       padding: 5px;
       font-family: "Gotham", sans-serif;
       transform: translate(0, 10px);
+
       &:focus {
         outline: none;
       }
@@ -612,6 +626,7 @@ main {
     width: 50%;
     display: flex;
     align-items: center;
+
     a {
       color: white;
       font-size: 20px;
@@ -631,6 +646,7 @@ main {
 }
 
 @media screen and (max-width: 420px) {
+
   html,
   body {
     width: 100vw;
@@ -674,6 +690,7 @@ main {
   body {
     overflow-x: hidden;
   }
+
   .marquee {
     transform: rotate(344deg) translate(-148px, -616px);
   }
@@ -683,9 +700,30 @@ main {
       font-size: 64px;
     }
   }
+
+  .banner {
+    width: 90vw;
+    margin: 0 auto;
+
+    h1,
+    h2 {
+      font-size: 42px !important;
+      padding-top: 10px;
+    }
+
+    p {
+      font-size: 32px !important;
+    }
+  }
+
+  .swiper-thumbs {
+    margin: 0 19px;
+
+  }
 }
 
 @media screen and (max-width: 768px) and (min-width: 600px) {
+
   html,
   body {
     width: 100vw;
@@ -694,6 +732,7 @@ main {
     background: #141414;
     font-family: "Neue Montreal";
   }
+
   .marquee {
     transform: rotate(349deg) translate(-148px, -415px);
   }
@@ -706,6 +745,7 @@ main {
 }
 
 @media screen and (max-width: 992px) and (min-width: 768px) {
+
   html,
   body {
     width: 100vw;
@@ -714,6 +754,7 @@ main {
     background: #141414;
     font-family: "Neue Montreal";
   }
+
   .marquee {
     transform: rotate(349deg) translate(-148px, -415px);
   }
@@ -729,6 +770,7 @@ main {
   body {
     overflow-x: hidden;
   }
+
   .marquee {
     transform: rotate(354deg) translate(-148px, -250px);
   }
@@ -741,6 +783,7 @@ main {
 }
 
 @media screen and (max-width: 768px) {
+
   html,
   body {
     width: 100vw;
@@ -753,6 +796,7 @@ main {
   .cursor-follower {
     display: none;
   }
+
   .cursor-follower-inner {
     display: none;
   }
@@ -760,6 +804,7 @@ main {
   main {
     width: 100%;
   }
+
   .circle {
     transform: translateX(0);
   }
@@ -815,7 +860,7 @@ main {
   }
 
   .gallery-thumbs {
-      margin-top: 10px;
+    margin-top: 10px;
 
   }
 }

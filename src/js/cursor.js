@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cursorInner.style.width = "100px";
       cursorInner.style.height = "100px";
       cursorInner.style.backgroundSize = "80px";
-      cursorInner.style.opacity = "1";
+      cursorInner.style.opacity = ".7";
     });
 
     link.addEventListener("mouseleave", () => {
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cursorInner.style.backgroundSize = "40px";
         cursorInner.style.opacity = "1";
       });
-  
+
       previous.addEventListener("mouseleave", () => {
         cursorInner.style.backgroundImage = "none";
         cursorInner.style.width = "8px";
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cursorInner.style.backgroundSize = "40px";
         cursorInner.style.opacity = "1";
       });
-  
+
       next.addEventListener("mouseleave", () => {
         cursorInner.style.backgroundImage = "none";
         cursorInner.style.width = "8px";
