@@ -20,9 +20,9 @@ header {
       height: auto;
     }
 
-    button {
-      position: relative;
-      z-index: 99;
+  .custom-logo-link {
+    &.opened {
+      opacity: 0;
     }
 
     .custom-logo-link {
@@ -79,6 +79,7 @@ header {
       }
     }
   }
+}
 
   &.margin {
     width: 100%;
@@ -88,6 +89,7 @@ header {
       margin: 0;
     }
   }
+}
 
 
 }
