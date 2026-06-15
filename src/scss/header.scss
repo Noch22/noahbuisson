@@ -74,14 +74,14 @@ header {
       }
     }
   }
+}
 
-  &.margin {
-    width: 100%;
-    position: relative;
+&.margin {
+  width: 100%;
+  position: relative;
 
-    .header_bar {
-      margin: 0;
-    }
+  .header_bar {
+    margin: 0;
   }
 }
 
