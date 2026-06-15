@@ -1,1 +1,0 @@
-{"version":3,"file":"src_pages_Common_js.js","mappings":";;;;;;;;;;;;;AAEe,MAAM,OAAO;AAAA,EAC1B,OAAO;AAAA,EACP;AAEF","sources":["webpack://wp-theme/./src/pages/Common.js"],"sourcesContent":["\n\nexport default class Common {\n  init() {\n  }\n\n}\n"],"names":[],"sourceRoot":""}
