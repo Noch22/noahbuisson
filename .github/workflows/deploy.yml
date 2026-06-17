@@ -1,0 +1,92 @@
+name: Deploy WordPress Theme
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      ####################################################
+      # BUILD WEBPACK
+      ####################################################
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Webpack
+        run: npm run build
+
+      ####################################################
+      # WHITELIST GITHUB RUNNER
+      ####################################################
+
+      - name: Get runner IP
+        id: ip
+        uses: haythem/public-ip@v1.3
+
+      - name: Whitelist IP
+        run: |
+          curl -s \
+          -H "Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_API_TOKEN }}" \
+          "https://${{ secrets.CPANEL_SERVER }}:2083/execute/SshWhitelist/add?address=${{ steps.ip.outputs.ipv4 }}&port=22"
+
+      ####################################################
+      # DEPLOIEMENT
+      ####################################################
+
+      - name: Upload Theme
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          source: "."
+          target: "${{ secrets.WP_THEME_PATH }}"
+          rm: true
+
+      ####################################################
+      # POST DEPLOY
+      ####################################################
+
+      - name: Post Deploy Commands
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          script: |
+            cd ${{ secrets.WP_THEME_PATH }}
+
+            find . -type d -exec chmod 755 {} \;
+            find . -type f -exec chmod 644 {} \;
+
+            echo "Deployment finished"
+
+      ####################################################
+      # CLEANUP
+      ####################################################
+
+      - name: Remove whitelist
+        if: always()
+        run: |
+          curl -s \
+          -H "Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_API_TOKEN }}" \
+          "https://${{ secrets.CPANEL_SERVER }}:2083/execute/SshWhitelist/remove_all"
