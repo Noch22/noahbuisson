@@ -1,92 +1,58 @@
-name: Deploy WordPress Theme
+name: Deploy Production
 
 on:
   push:
     branches:
       - main
 
-concurrency:
-  group: production
-  cancel-in-progress: true
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      ####################################################
-      # BUILD WEBPACK
-      ####################################################
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Webpack
-        run: npm run build
-
-      ####################################################
-      # WHITELIST GITHUB RUNNER
-      ####################################################
-
+      ############################################
+      # 1. récupérer IP runner GitHub
+      ############################################
       - name: Get runner IP
         id: ip
         uses: haythem/public-ip@v1.3
 
-      - name: Whitelist IP
+      ############################################
+      # 2. whitelist IP via cPanel API
+      ############################################
+      - name: Whitelist IP cPanel
         run: |
           curl -s \
-          -H "Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_API_TOKEN }}" \
-          "https://${{ secrets.CPANEL_SERVER }}:2083/execute/SshWhitelist/add?address=${{ steps.ip.outputs.ipv4 }}&port=22"
+            -H "Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://${{ secrets.CPANEL_SERVER }}:2083/execute/SshWhitelist/add?address=${{ steps.ip.outputs.ipv4 }}&port=22"
 
-      ####################################################
-      # DEPLOIEMENT
-      ####################################################
-
-      - name: Upload Theme
-        uses: appleboy/scp-action@v1
+      ############################################
+      # 3. deploy SSH
+      ############################################
+      - name: Execute deployment on server
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_PASS }}
-          source: "."
-          target: "${{ secrets.WP_THEME_PATH }}"
-          rm: true
-
-      ####################################################
-      # POST DEPLOY
-      ####################################################
-
-      - name: Post Deploy Commands
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_PASS }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ${{ secrets.WP_THEME_PATH }}
+            cd noahbuisson.fr/wp-content/themes/noahbuisson
 
-            find . -type d -exec chmod 755 {} \;
-            find . -type f -exec chmod 644 {} \;
+            git fetch origin
+            git reset --hard origin/main
+            git clean -fd
 
-            echo "Deployment finished"
+            npm ci
+            npm run build:prod
 
-      ####################################################
-      # CLEANUP
-      ####################################################
-
-      - name: Remove whitelist
+      ############################################
+      # 4. cleanup whitelist (sécurité)
+      ############################################
+      - name: Remove whitelist (always)
         if: always()
         run: |
           curl -s \
-          -H "Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_API_TOKEN }}" \
-          "https://${{ secrets.CPANEL_SERVER }}:2083/execute/SshWhitelist/remove_all"
+            -H "Authorization: cpanel ${{ secrets.CPANEL_USERNAME }}:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://${{ secrets.CPANEL_SERVER }}:2083/execute/SshWhitelist/remove_all"
