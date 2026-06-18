@@ -1,24 +1,22 @@
-document.addEventListener("DOMContentLoaded", function () {
+function initCursor() {
   const cursorFollower = document.querySelector(".cursor-follower");
   const cursorInner = document.querySelector(".cursor-follower-inner");
 
+  if (!cursorFollower || !cursorInner) return;
+
   document.addEventListener("mousemove", function (e) {
     const { clientX: mouseX, clientY: mouseY } = e;
-    const cursorWidth = cursorFollower.offsetWidth; // Largeur du curseur
-    const cursorHeight = cursorFollower.offsetHeight; // Hauteur du curseur
-    const innerWidth = cursorInner.offsetWidth; // Largeur du curseur interne
-    const innerHeight = cursorInner.offsetHeight; // Hauteur du curseur interne
-    const coefficient = 1; // Modifiez ce coefficient selon la vitesse souhaitée
+    const cursorWidth = cursorFollower.offsetWidth;
+    const cursorHeight = cursorFollower.offsetHeight;
+    const coefficient = 1;
     cursorFollower.style.transform = `translate(${(mouseX - cursorWidth / 2) * coefficient}px, ${(mouseY - cursorHeight / 2) * coefficient}px)`;
   });
 
   document.addEventListener("scroll", function () {
     const { clientX: mouseX, clientY: mouseY } = event;
-    const cursorWidth = cursorFollower.offsetWidth; // Largeur du curseur
-    const cursorHeight = cursorFollower.offsetHeight; // Hauteur du curseur
-    const innerWidth = cursorInner.offsetWidth; // Largeur du curseur interne
-    const innerHeight = cursorInner.offsetHeight; // Hauteur du curseur interne
-    const coefficient = 1; // Modifiez ce coefficient selon la vitesse souhaitée
+    const cursorWidth = cursorFollower.offsetWidth;
+    const cursorHeight = cursorFollower.offsetHeight;
+    const coefficient = 1;
     cursorFollower.style.transform = `translate(${(mouseX - cursorWidth / 2) * coefficient}px, ${(mouseY - cursorHeight / 2) * coefficient}px)`;
   });
 
@@ -84,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (previous) {
     previous.forEach((previous => {
-
       previous.addEventListener("mouseenter", () => {
         cursorInner.style.backgroundImage = `url('https://www.noahbuisson.fr/wp-content/uploads/2026/06/arrow_left.png')`;
         cursorInner.style.width = "80px";
@@ -122,4 +119,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }))
   }
-});
+}
+
+// Init on page load
+document.addEventListener("DOMContentLoaded", initCursor);
+
+// Re-init on Swup page change
+window.addEventListener("swup:updated", initCursor);
+
+export { initCursor };

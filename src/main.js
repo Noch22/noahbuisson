@@ -3,6 +3,7 @@ __webpack_public_path__ = window.WP.publicPath; // WP.publicPath come from funct
 
 import './main.scss'
 import Router from './utils/Router'
+import './js/swup'
 import './js/home'
 import './js/header'
 import './js/cursor'
@@ -14,7 +15,7 @@ const routes = {
   common: () => import('./pages/Common'), // need an init method inside the class
   home: () => {
     console.log('init home')
-  }, 
+  },
 };
 
 const App = (() => {
@@ -38,8 +39,8 @@ if (module.hot) {
   module.hot.dispose(() => {
     App.stop();
   });
-  module.hot.accept((err, {moduleId, module}) => {
-    console.log(err, {moduleId, module})
+  module.hot.accept((err, { moduleId, module }) => {
+    console.log(err, { moduleId, module })
   });
 }
 
