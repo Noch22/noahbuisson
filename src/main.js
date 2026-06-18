@@ -23,11 +23,10 @@ const App = (() => {
 
   return {
     start: () => {
-      console.log('Start App');
+
       router.loadEvents();
     },
     stop: () => {
-      console.log('Stop App');
       //in HMR mode clean router before restart app 
       router.destroy();
     }
