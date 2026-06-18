@@ -46,7 +46,7 @@
     "@studio-freight/lenis": "^1.0.39",
     "@swup/slide-theme": "^2.0.2",
     "lenis": "^1.1.13",
-    "photoswipe": "^5.4.3",
+    "photoswipe": "^5.4.4",
     "postcss-preset-env": "^9.5.14",
     "split-type": "^0.3.4",
     "swup": "^4.9.2"
