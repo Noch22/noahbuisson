@@ -91,3 +91,16 @@ add_filter('acf/settings/load_json', function ($paths) {
   $paths[] = get_stylesheet_directory() . '/acf-json';
   return $paths;
 });
+
+// Swup container hooks
+function open_swup_container()
+{
+  echo '<div id="swup" class="transition-fade">';
+}
+add_action('wp_body_open', 'open_swup_container');
+
+function close_swup_container()
+{
+  echo '</div><!-- #swup -->';
+}
+add_action('wp_footer', 'close_swup_container', 1);

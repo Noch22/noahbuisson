@@ -1,30 +1,37 @@
-<?php 
+<?php
 
 wp_head();
-?>    
+?>
 
 <div class="cursor-follower">
-        <div class="cursor-follower-inner"></div>
+    <div class="cursor-follower-inner"></div>
 </div>
-<main style="padding: 0; position: relative;">
-    <?php 
-    get_header();
-    ?>
-<div class="main">
 
+<div id="swup" class="transition-fade">
+    <main style="padding: 0; position: relative;">
+        <?php
+        get_header();
+        ?>
+        <div class="main">
+
+
+            <?php
+            echo get_the_content();
+
+            ?>
+
+        </div>
+
+    </main>
 
     <?php
-    echo get_the_content();
-
+    get_footer();
     ?>
-
 </div>
-
-</main>
 
 
 <?php
 
-get_footer();
+wp_footer();
 
 ?>
