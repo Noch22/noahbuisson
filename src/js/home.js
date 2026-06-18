@@ -243,50 +243,57 @@ function initHome() {
       });
   }
 
-  const text = new SplitType(".homepage_text h1");
+  const homepageText = document.querySelector(".homepage_text h1");
+  if (homepageText) {
+    const text = new SplitType(".homepage_text h1");
 
-  gsap.set(".homepage_text h1 .char", { y: 225, rotation: 30 });
-  gsap.set(".homepage_text h1", { scale: 1.2 });
-
-  const timeline = gsap.timeline();
-  if (sessionStorage.getItem("visited")) {
-    timeline.to(".homepage_text h1 .char", {
-      duration: 2.5,
-      y: 0,
-      rotation: 0,
-      stagger: 0.1,
-      ease: "power3.inOut",
-    });
-  } else {
-    timeline.to(".homepage_text h1 .char", {
-      delay: 5.5,
-      duration: 2.5,
-      y: 0,
-      rotation: 0,
-      stagger: 0.1,
-      ease: "power3.inOut",
-    });
-
-    sessionStorage.setItem("visited", "true");
+    gsap.set(".homepage_text h1 .char", { y: 225, rotation: 30 });
+    gsap.set(".homepage_text h1", { scale: 1.2 });
   }
 
-  timeline.to(
-    ".homepage_text h1",
-    {
-      scale: 1.1,
-      ease: "expo.inOut",
-    },
-    "-=0.5",
-  );
+  const timeline = gsap.timeline();
+  if (homepageText) {
+    if (sessionStorage.getItem("visited")) {
+      timeline.to(".homepage_text h1 .char", {
+        duration: 2.5,
+        y: 0,
+        rotation: 0,
+        stagger: 0.1,
+        ease: "power3.inOut",
+      });
+    } else {
+      timeline.to(".homepage_text h1 .char", {
+        delay: 5.5,
+        duration: 2.5,
+        y: 0,
+        rotation: 0,
+        stagger: 0.1,
+        ease: "power3.inOut",
+      });
 
-  timeline.to(
-    ".homepage_text h1",
-    {
-      scale: 1,
-      ease: "expo.inOut",
-    },
-    "-=0.5",
-  );
+      sessionStorage.setItem("visited", "true");
+    }
+  }
+
+  if (homepageText) {
+    timeline.to(
+      ".homepage_text h1",
+      {
+        scale: 1.1,
+        ease: "expo.inOut",
+      },
+      "-=0.5",
+    );
+
+    timeline.to(
+      ".homepage_text h1",
+      {
+        scale: 1,
+        ease: "expo.inOut",
+      },
+      "-=0.5",
+    );
+  }
 
   if (document.querySelector(".cards")) {
     document.querySelector(".cards").onmousemove = (e) => {
